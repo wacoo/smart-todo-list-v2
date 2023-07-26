@@ -24,6 +24,36 @@ class Display {
 
   populatePage() {
     root.innerHTML = '';
+
+    const elements = {
+        'h3': ['h3', null, null, 'head'],
+        'head': ['div', ['head'], null],
+        'ul': ['ul', null, null],
+        'refresh': ['i', ['refresh', 'fa', 'fa-refresh'], null],
+        'divInput': ['div', ['div_input'], null],
+        'input': ['input', ['input'], 'input'],
+        'enter': ['span', ['enter'], 'enter'],
+        'divClearAll': ['div', ['div_clear_all'], null],
+        'btnClear': ['button', 'clear', 'clear']
+      }
+      const el = [];
+    Object.entries(elements).forEach(([key, val]) => {
+      eval(key) = this.createElement(val[0], val[1], val[2]);
+      if (val[2] === 'head') {
+        elt.innerHTML = "Today's Todo";
+      } else if (val[2] === 'input') {
+        elt.setAttribute('placeholder', 'Add your list...');
+      } else if (val[2] === 'enter') {
+        elt.innerHTML = '&crarr;';
+      }
+      this.appendElement();
+      this.appendElement(h3, head);
+      this.appendElement(refresh, head);
+      this.appendElement(input, divInput);
+      this.appendElement(enter, divInput);
+      this.appendElement(head, root);
+      this.appendElement(divInput, root);
+    });
     const h3 = this.createElement('h3', null, null);
     const head = this.createElement('div', ['head'], null);
     const ul = this.createElement('ul', null, null);
@@ -37,7 +67,6 @@ class Display {
     const enter = this.createElement('span', ['enter'], 'enter');
     const divClearAll = this.createElement('div', ['div_clear_all'], null);
     const btnClear = this.createElement('button', 'clear', 'clear');
-
     h3.innerHTML = "Today's Todo";
     input.setAttribute('placeholder', 'Add your list...');
     enter.innerHTML = '&crarr;';
@@ -49,7 +78,7 @@ class Display {
     this.appendElement(head, root);
     this.appendElement(divInput, root);
 
-    for (let i = 0; i < tasks.taskCollection.length; i += 1) {
+    /*for (let i = 0; i < tasks.taskCollection.length; i += 1) {
       const li = this.createElement('li', null, null);
       const chk = this.createElement('input', ['chk'], 'chk');
       const task = this.createElement('input', ['desc'], 'desc');
@@ -90,7 +119,7 @@ class Display {
     this.addEnterListener(input);
     this.clearButtonListener(btnClear);
     this.addEnterBtnClickListener(input);
-  }
+  }*/
 
   addCheckEventListener(chk, tsk, idx) {
     chk.addEventListener('change', () => {
